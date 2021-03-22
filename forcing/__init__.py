@@ -1,13 +1,5 @@
 from esmvalcore.experimental import get_recipe
-
-BASINS = {
-    'Doring': 'Doring/Doring.shp',
-    'Great_Kei': 'Great_Kei/Great_Kei.shp',
-    'Merrimack': 'Merrimack/Merrimack.shp',
-    'Meuse': 'Meuse/Meuse.shp',
-    'Rhine': 'Rhine/Rhine.shp',
-    'Savannah': 'Savannah/Savannah.shp',
-}
+from pathlib import Path
 
 FORCINGS = {
     'ERA5': {
@@ -47,7 +39,7 @@ def update_marrmot(
     forcings: list = None,
     startyear: int = None,
     endyear: int = None,
-    basin: str = None,
+    shapefile: str = None,
 ):
     """
     Update marmott recipe data in-place.
@@ -63,8 +55,8 @@ def update_marrmot(
     basin : str
         Name of the basin to use. Defines the shapefile.
     """
-    if basin is not None:
-        shapefile = BASINS[basin]
+    if shapefile is not None:
+        basin = Path(shapefile).stem
         data['preprocessors']['daily']['extract_shape'][
             'shapefile'] = shapefile
         data['diagnostics']['diagnostic_daily']['scripts']['script'][

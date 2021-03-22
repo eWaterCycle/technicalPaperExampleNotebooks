@@ -2,7 +2,7 @@ from esmvalcore.experimental import get_recipe
 import deepdiff
 import copy
 import pytest
-from . import update_marmott
+from forcing import update_marrmot
 
 TEST_CASES = [(case['params'], case['expected_diff']) for case in (
     {
@@ -103,7 +103,7 @@ TEST_CASES = [(case['params'], case['expected_diff']) for case in (
     },
     {
         'params': {
-            'basin': 'Rhine'
+            'shapefile': 'Rhine/Rhine.shp'
         },
         'expected_diff': {
             'values_changed': {
@@ -130,7 +130,7 @@ def test_forcing_marrmot(params, expected_diff):
 
     data = copy.deepcopy(expected_data)
 
-    update_marmott(data, **params)
+    update_marrmot(data, **params)
 
     diff = deepdiff.DeepDiff(recipe.data, data)
 
