@@ -1,8 +1,12 @@
 from esmvalcore.experimental import get_recipe
 
 BASINS = {
+    'Doring': 'Doring/Doring.shp',
+    'Great_Kei': 'Great_Kei/Great_Kei.shp',
+    'Merrimack': 'Merrimack/Merrimack.shp',
     'Meuse': 'Meuse/Meuse.shp',
-    # ...
+    'Rhine': 'Rhine/Rhine.shp',
+    'Savannah': 'Savannah/Savannah.shp',
 }
 
 FORCINGS = {
