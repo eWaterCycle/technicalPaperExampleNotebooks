@@ -41,7 +41,7 @@ def update_lisflood(data: dict, **kwargs):
     raise NotImplementedError
 
 
-def update_marmott(
+def update_marrmot(
     data: dict,
     *,
     forcings: list = None,
@@ -118,23 +118,23 @@ def update_wflow(data: dict, **kwargs):
 
 MODEL_DATA = {
     'hype': {
-        'recipe': 'hydrology/recipe_hype.yml',
+        'recipe_name': 'hydrology/recipe_hype.yml',
         'update_func': update_hype,
     },
     'lisflood': {
-        'recipe': 'hydrology/recipe_lisflood.yml',
+        'recipe_name': 'hydrology/recipe_lisflood.yml',
         'update_func': update_lisflood,
     },
-    'marmott': {
-        'recipe': 'hydrology/recipe_marrmot.yml',
-        'update_func': update_marmott,
+    'marrmot': {
+        'recipe_name': 'hydrology/recipe_marrmot.yml',
+        'update_func': update_marrmot,
     },
     'pcrglobwb': {
-        'recipe': 'hydrology/recipe_pcrglobwb.yml',
+        'recipe_name': 'hydrology/recipe_pcrglobwb.yml',
         'update_func': update_pcrglobwb,
     },
     'wflow': {
-        'recipe': 'hydrology/recipe_wflowyml',
+        'recipe_name': 'hydrology/recipe_wflowyml',
         'update_func': update_wflow,
     },
 }
