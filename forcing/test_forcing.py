@@ -84,33 +84,41 @@ TEST_INPUT_HYPE = (
     },
 )
 
-TEST_INPUT_WFLOW = ({}, {
-    'startyear': 1990,
-    'endyear': 1990,
-    'forcings': ['ERA-Interim', 'ERA5'],
-    'dem_file': 'wflow/wflow_dem_Meuse.nc',
-    'extract_region': {
-        'start_longitude': 0,
-        'end_longitude': 6.75,
-        'start_latitude': 47.25,
-        'end_latitude': 52.5,
+TEST_INPUT_WFLOW = (
+    {},
+    {
+        'startyear': 1990,
+        'endyear': 1990,
+        'forcings': ['ERA-Interim', 'ERA5'],
+        'dem_file': 'wflow/wflow_dem_Meuse.nc',
+        'extract_region': {
+            'start_longitude': 0,
+            'end_longitude': 6.75,
+            'start_latitude': 47.25,
+            'end_latitude': 52.5,
+        },
     },
-}, {
-    'startyear': 1234
-}, {
-    'endyear': 4321
-}, {
-    'forcings': ['ERA5']
-}, {
-    'dem_file': 'wflow/wflow_dem_Rhine.nc'
-}, {
-    'extract_region': {
-        'start_longitude': 12,
-        'end_longitude': 34,
-        'start_latitude': 56,
-        'end_latitude': 78,
-    }
-})
+    {
+        'startyear': 1234
+    },
+    {
+        'endyear': 4321
+    },
+    {
+        'forcings': ['ERA5']
+    },
+    {
+        'dem_file': 'wflow/wflow_dem_Rhine.nc'
+    },
+    {
+        'extract_region': {
+            'start_longitude': 12,
+            'end_longitude': 34,
+            'start_latitude': 56,
+            'end_latitude': 78,
+        }
+    },
+)
 
 TEST_INPUT_PCRGLOBWB = (
     {},
@@ -156,717 +164,769 @@ TEST_INPUT_PCRGLOBWB = (
     },
 )
 
-EXPECTED_DIFF_MARRMOT = ({}, {}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['psl']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['rsds']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['rsdt']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2018
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2018
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['psl']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2018
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['rsds']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2018
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['rsdt']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2018
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['additional_datasets'][0]['dataset']":
-        {
-            'new_value': 'ERA5',
-            'old_value': 'ERA-Interim'
+EXPECTED_DIFF_MARRMOT = (
+    {},
+    {},
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['psl']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['rsds']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['rsdt']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            }
         }
     },
-    'iterable_item_removed': {
-        "root['diagnostics']['diagnostic_daily']['additional_datasets'][1]": {
-            'dataset': 'ERA5',
-            'project': 'OBS6',
-            'tier': 3,
-            'type': 'reanaly',
-            'version': 1
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2018
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2018
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['psl']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2018
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['rsds']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2018
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['rsdt']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2018
+            }
         }
-    }
-}, {
-    'values_changed': {
-        "root['preprocessors']['daily']['extract_shape']['shapefile']": {
-            'new_value': 'Rhine/Rhine.shp',
-            'old_value': 'Meuse/Meuse.shp'
+    },
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['additional_datasets'][0]['dataset']":
+            {
+                'new_value': 'ERA5',
+                'old_value': 'ERA-Interim'
+            }
         },
-        "root['diagnostics']['diagnostic_daily']['scripts']['script']['basin']":
-        {
-            'new_value': 'Rhine',
-            'old_value': 'Meuse'
+        'iterable_item_removed': {
+            "root['diagnostics']['diagnostic_daily']['additional_datasets'][1]":
+            {
+                'dataset': 'ERA5',
+                'project': 'OBS6',
+                'tier': 3,
+                'type': 'reanaly',
+                'version': 1
+            }
         }
-    }
-})
+    },
+    {
+        'values_changed': {
+            "root['preprocessors']['daily']['extract_shape']['shapefile']": {
+                'new_value': 'Rhine/Rhine.shp',
+                'old_value': 'Meuse/Meuse.shp'
+            },
+            "root['diagnostics']['diagnostic_daily']['scripts']['script']['basin']":
+            {
+                'new_value': 'Rhine',
+                'old_value': 'Meuse'
+            }
+        }
+    },
+)
 
-EXPECTED_DIFF_LISFLOOD = ({}, {}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tasmax']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tasmin']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tdps']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['uas']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['vas']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['rsds']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tasmax']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tasmin']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tdps']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['uas']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['vas']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['rsds']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        }
-    }
-}, {
-    'values_changed': {
-        "root['datasets'][0]['dataset']": {
-            'new_value': 'ERA5',
-            'old_value': 'ERA-Interim'
+EXPECTED_DIFF_LISFLOOD = (
+    {},
+    {},
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tasmax']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tasmin']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tdps']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['uas']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['vas']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['rsds']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            }
         }
     },
-    'iterable_item_removed': {
-        "root['datasets'][1]": {
-            'dataset': 'ERA5',
-            'project': 'OBS6',
-            'tier': 3,
-            'type': 'reanaly',
-            'version': 1
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tasmax']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tasmin']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tdps']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['uas']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['vas']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['rsds']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            }
         }
-    }
-}, {
-    'values_changed': {
-        "root['preprocessors']['general']['extract_shape']['shapefile']": {
-            'new_value': 'Rhine/Rhine.shp',
-            'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
+    },
+    {
+        'values_changed': {
+            "root['datasets'][0]['dataset']": {
+                'new_value': 'ERA5',
+                'old_value': 'ERA-Interim'
+            }
         },
-        "root['preprocessors']['daily_water']['extract_shape']['shapefile']": {
-            'new_value': 'Rhine/Rhine.shp',
-            'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
-        },
-        "root['preprocessors']['daily_temperature']['extract_shape']['shapefile']":
-        {
-            'new_value': 'Rhine/Rhine.shp',
-            'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
-        },
-        "root['preprocessors']['daily_radiation']['extract_shape']['shapefile']":
-        {
-            'new_value': 'Rhine/Rhine.shp',
-            'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
-        },
-        "root['preprocessors']['daily_windspeed']['extract_shape']['shapefile']":
-        {
-            'new_value': 'Rhine/Rhine.shp',
-            'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
-        },
-        "root['diagnostics']['diagnostic_daily']['scripts']['script']['catchment']":
-        {
-            'new_value': 'Rhine',
-            'old_value': 'Meuse'
+        'iterable_item_removed': {
+            "root['datasets'][1]": {
+                'dataset': 'ERA5',
+                'project': 'OBS6',
+                'tier': 3,
+                'type': 'reanaly',
+                'version': 1
+            }
         }
-    }
-}, {
-    'values_changed': {
-        "root['preprocessors']['general']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 0
-        },
-        "root['preprocessors']['general']['extract_region']['end_longitude']":
-        {
-            'new_value': 34,
-            'old_value': 9
-        },
-        "root['preprocessors']['general']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['general']['extract_region']['end_latitude']": {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['daily_water']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 0
-        },
-        "root['preprocessors']['daily_water']['extract_region']['end_longitude']":
-        {
-            'new_value': 34,
-            'old_value': 9
-        },
-        "root['preprocessors']['daily_water']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['daily_water']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['daily_temperature']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 0
-        },
-        "root['preprocessors']['daily_temperature']['extract_region']['end_longitude']":
-        {
-            'new_value': 34,
-            'old_value': 9
-        },
-        "root['preprocessors']['daily_temperature']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['daily_temperature']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['daily_radiation']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 0
-        },
-        "root['preprocessors']['daily_radiation']['extract_region']['end_longitude']":
-        {
-            'new_value': 34,
-            'old_value': 9
-        },
-        "root['preprocessors']['daily_radiation']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['daily_radiation']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['daily_windspeed']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 0
-        },
-        "root['preprocessors']['daily_windspeed']['extract_region']['end_longitude']":
-        {
-            'new_value': 34,
-            'old_value': 9
-        },
-        "root['preprocessors']['daily_windspeed']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['daily_windspeed']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
+    },
+    {
+        'values_changed': {
+            "root['preprocessors']['general']['extract_shape']['shapefile']": {
+                'new_value': 'Rhine/Rhine.shp',
+                'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
+            },
+            "root['preprocessors']['daily_water']['extract_shape']['shapefile']":
+            {
+                'new_value': 'Rhine/Rhine.shp',
+                'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
+            },
+            "root['preprocessors']['daily_temperature']['extract_shape']['shapefile']":
+            {
+                'new_value': 'Rhine/Rhine.shp',
+                'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
+            },
+            "root['preprocessors']['daily_radiation']['extract_shape']['shapefile']":
+            {
+                'new_value': 'Rhine/Rhine.shp',
+                'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
+            },
+            "root['preprocessors']['daily_windspeed']['extract_shape']['shapefile']":
+            {
+                'new_value': 'Rhine/Rhine.shp',
+                'old_value': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp'
+            },
+            "root['diagnostics']['diagnostic_daily']['scripts']['script']['catchment']":
+            {
+                'new_value': 'Rhine',
+                'old_value': 'Meuse'
+            }
         }
-    }
-})
+    },
+    {
+        'values_changed': {
+            "root['preprocessors']['general']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 0
+            },
+            "root['preprocessors']['general']['extract_region']['end_longitude']":
+            {
+                'new_value': 34,
+                'old_value': 9
+            },
+            "root['preprocessors']['general']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['general']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['daily_water']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 0
+            },
+            "root['preprocessors']['daily_water']['extract_region']['end_longitude']":
+            {
+                'new_value': 34,
+                'old_value': 9
+            },
+            "root['preprocessors']['daily_water']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['daily_water']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['daily_temperature']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 0
+            },
+            "root['preprocessors']['daily_temperature']['extract_region']['end_longitude']":
+            {
+                'new_value': 34,
+                'old_value': 9
+            },
+            "root['preprocessors']['daily_temperature']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['daily_temperature']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['daily_radiation']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 0
+            },
+            "root['preprocessors']['daily_radiation']['extract_region']['end_longitude']":
+            {
+                'new_value': 34,
+                'old_value': 9
+            },
+            "root['preprocessors']['daily_radiation']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['daily_radiation']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['daily_windspeed']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 0
+            },
+            "root['preprocessors']['daily_windspeed']['extract_region']['end_longitude']":
+            {
+                'new_value': 34,
+                'old_value': 9
+            },
+            "root['preprocessors']['daily_windspeed']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['daily_windspeed']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            }
+        }
+    },
+)
 
-EXPECTED_DIFF_HYPE = ({}, {}, {
-    'values_changed': {
-        "root['diagnostics']['hype']['variables']['tas']['start_year']": {
-            'new_value': 1234,
-            'old_value': 1979
-        },
-        "root['diagnostics']['hype']['variables']['tasmin']['start_year']": {
-            'new_value': 1234,
-            'old_value': 1979
-        },
-        "root['diagnostics']['hype']['variables']['tasmax']['start_year']": {
-            'new_value': 1234,
-            'old_value': 1979
-        },
-        "root['diagnostics']['hype']['variables']['pr']['start_year']": {
-            'new_value': 1234,
-            'old_value': 1979
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['hype']['variables']['tas']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1979
-        },
-        "root['diagnostics']['hype']['variables']['tasmin']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1979
-        },
-        "root['diagnostics']['hype']['variables']['tasmax']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1979
-        },
-        "root['diagnostics']['hype']['variables']['pr']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1979
-        }
-    }
-}, {
-    'values_changed': {
-        "root['datasets'][0]['dataset']": {
-            'new_value': 'ERA5',
-            'old_value': 'ERA-Interim'
+EXPECTED_DIFF_HYPE = (
+    {},
+    {},
+    {
+        'values_changed': {
+            "root['diagnostics']['hype']['variables']['tas']['start_year']": {
+                'new_value': 1234,
+                'old_value': 1979
+            },
+            "root['diagnostics']['hype']['variables']['tasmin']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1979
+            },
+            "root['diagnostics']['hype']['variables']['tasmax']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1979
+            },
+            "root['diagnostics']['hype']['variables']['pr']['start_year']": {
+                'new_value': 1234,
+                'old_value': 1979
+            }
         }
     },
-    'iterable_item_removed': {
-        "root['datasets'][1]": {
-            'dataset': 'ERA5',
-            'project': 'OBS6',
-            'tier': 3,
-            'type': 'reanaly',
-            'version': 1
+    {
+        'values_changed': {
+            "root['diagnostics']['hype']['variables']['tas']['end_year']": {
+                'new_value': 4321,
+                'old_value': 1979
+            },
+            "root['diagnostics']['hype']['variables']['tasmin']['end_year']": {
+                'new_value': 4321,
+                'old_value': 1979
+            },
+            "root['diagnostics']['hype']['variables']['tasmax']['end_year']": {
+                'new_value': 4321,
+                'old_value': 1979
+            },
+            "root['diagnostics']['hype']['variables']['pr']['end_year']": {
+                'new_value': 4321,
+                'old_value': 1979
+            }
         }
-    }
-}, {
-    'values_changed': {
-        "root['preprocessors']['preprocessor']['extract_shape']['shapefile']":
-        {
-            'new_value': 'Rhine_HYPE.shp',
-            'old_value': 'Meuse_HYPE.shp'
+    },
+    {
+        'values_changed': {
+            "root['datasets'][0]['dataset']": {
+                'new_value': 'ERA5',
+                'old_value': 'ERA-Interim'
+            }
         },
-        "root['preprocessors']['temperature']['extract_shape']['shapefile']": {
-            'new_value': 'Rhine_HYPE.shp',
-            'old_value': 'Meuse_HYPE.shp'
-        },
-        "root['preprocessors']['water']['extract_shape']['shapefile']": {
-            'new_value': 'Rhine_HYPE.shp',
-            'old_value': 'Meuse_HYPE.shp'
+        'iterable_item_removed': {
+            "root['datasets'][1]": {
+                'dataset': 'ERA5',
+                'project': 'OBS6',
+                'tier': 3,
+                'type': 'reanaly',
+                'version': 1
+            }
         }
-    }
-})
+    },
+    {
+        'values_changed': {
+            "root['preprocessors']['preprocessor']['extract_shape']['shapefile']":
+            {
+                'new_value': 'Rhine_HYPE.shp',
+                'old_value': 'Meuse_HYPE.shp'
+            },
+            "root['preprocessors']['temperature']['extract_shape']['shapefile']":
+            {
+                'new_value': 'Rhine_HYPE.shp',
+                'old_value': 'Meuse_HYPE.shp'
+            },
+            "root['preprocessors']['water']['extract_shape']['shapefile']": {
+                'new_value': 'Rhine_HYPE.shp',
+                'old_value': 'Meuse_HYPE.shp'
+            }
+        }
+    },
+)
 
-EXPECTED_DIFF_WFLOW = ({}, {
-    'values_changed': {
-        "root['diagnostics']['wflow_daily']['scripts']['script']['basin']": {
-            'new_value': 'wflow_dem_Meuse',
-            'old_value': 'Meuse'
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['wflow_daily']['variables']['tas']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['pr']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['psl']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['rsds']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['rsdt']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['wflow_daily']['variables']['tas']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['pr']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['psl']['end_year']": {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['rsds']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        },
-        "root['diagnostics']['wflow_daily']['variables']['rsdt']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 1990
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['wflow_daily']['additional_datasets'][0]['dataset']":
-        {
-            'new_value': 'ERA5',
-            'old_value': 'ERA-Interim'
+EXPECTED_DIFF_WFLOW = (
+    {},
+    {
+        'values_changed': {
+            "root['diagnostics']['wflow_daily']['scripts']['script']['basin']":
+            {
+                'new_value': 'wflow_dem_Meuse',
+                'old_value': 'Meuse'
+            }
         }
     },
-    'iterable_item_removed': {
-        "root['diagnostics']['wflow_daily']['additional_datasets'][1]": {
-            'dataset': 'ERA5',
-            'project': 'OBS6',
-            'tier': 3,
-            'type': 'reanaly',
-            'version': 1
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['wflow_daily']['scripts']['script']['basin']": {
-            'new_value': 'wflow_dem_Rhine',
-            'old_value': 'Meuse'
-        },
-        "root['diagnostics']['wflow_daily']['scripts']['script']['dem_file']":
-        {
-            'new_value': 'wflow/wflow_dem_Rhine.nc',
-            'old_value': 'wflow/wflow_dem_Meuse.nc'
-        }
-    }
-}, {
-    'type_changes': {
-        "root['preprocessors']['rough_cutout']['extract_region']['end_longitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 6.75,
-            'new_value': 34
-        },
-        "root['preprocessors']['rough_cutout']['extract_region']['start_latitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 47.25,
-            'new_value': 56
-        },
-        "root['preprocessors']['rough_cutout']['extract_region']['end_latitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 52.5,
-            'new_value': 78
+    {
+        'values_changed': {
+            "root['diagnostics']['wflow_daily']['variables']['tas']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['pr']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['psl']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['rsds']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['rsdt']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            }
         }
     },
-    'values_changed': {
-        "root['preprocessors']['rough_cutout']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 0
+    {
+        'values_changed': {
+            "root['diagnostics']['wflow_daily']['variables']['tas']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['pr']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['psl']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['rsds']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            },
+            "root['diagnostics']['wflow_daily']['variables']['rsdt']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 1990
+            }
         }
-    }
-})
+    },
+    {
+        'values_changed': {
+            "root['diagnostics']['wflow_daily']['additional_datasets'][0]['dataset']":
+            {
+                'new_value': 'ERA5',
+                'old_value': 'ERA-Interim'
+            }
+        },
+        'iterable_item_removed': {
+            "root['diagnostics']['wflow_daily']['additional_datasets'][1]": {
+                'dataset': 'ERA5',
+                'project': 'OBS6',
+                'tier': 3,
+                'type': 'reanaly',
+                'version': 1
+            }
+        }
+    },
+    {
+        'values_changed': {
+            "root['diagnostics']['wflow_daily']['scripts']['script']['basin']":
+            {
+                'new_value': 'wflow_dem_Rhine',
+                'old_value': 'Meuse'
+            },
+            "root['diagnostics']['wflow_daily']['scripts']['script']['dem_file']":
+            {
+                'new_value': 'wflow/wflow_dem_Rhine.nc',
+                'old_value': 'wflow/wflow_dem_Meuse.nc'
+            }
+        }
+    },
+    {
+        'type_changes': {
+            "root['preprocessors']['rough_cutout']['extract_region']['end_longitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 6.75,
+                'new_value': 34
+            },
+            "root['preprocessors']['rough_cutout']['extract_region']['start_latitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 47.25,
+                'new_value': 56
+            },
+            "root['preprocessors']['rough_cutout']['extract_region']['end_latitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 52.5,
+                'new_value': 78
+            }
+        },
+        'values_changed': {
+            "root['preprocessors']['rough_cutout']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 0
+            }
+        }
+    },
+)
 
-EXPECTED_DIFF_PCRGLOBWB = ({}, {}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 2002
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 2002
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2016
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2016
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['pr_climatology']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tas_climatology']['start_year']":
-        {
-            'new_value': 1234,
-            'old_value': 1990
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['variables']['pr_climatology']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2002
-        },
-        "root['diagnostics']['diagnostic_daily']['variables']['tas_climatology']['end_year']":
-        {
-            'new_value': 4321,
-            'old_value': 2002
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['additional_datasets'][0]['dataset']":
-        {
-            'new_value': 'ERA5',
-            'old_value': 'ERA-Interim'
+EXPECTED_DIFF_PCRGLOBWB = (
+    {},
+    {},
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 2002
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 2002
+            }
         }
     },
-    'iterable_item_removed': {
-        "root['diagnostics']['diagnostic_daily']['additional_datasets'][1]": {
-            'dataset': 'ERA5',
-            'project': 'OBS6',
-            'tier': 3,
-            'type': 'reanaly',
-            'version': 1
-        }
-    }
-}, {
-    'values_changed': {
-        "root['diagnostics']['diagnostic_daily']['scripts']['script']['basin']":
-        {
-            'new_value': 'meuse',
-            'old_value': 'rhine'
-        }
-    }
-}, {
-    'type_changes': {
-        "root['preprocessors']['crop_basin']['extract_region']['end_longitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 13.5,
-            'new_value': 34
-        },
-        "root['preprocessors']['preproc_pr']['extract_region']['end_longitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 13.5,
-            'new_value': 34
-        },
-        "root['preprocessors']['preproc_tas']['extract_region']['end_longitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 13.5,
-            'new_value': 34
-        },
-        "root['preprocessors']['preproc_pr_clim']['extract_region']['end_longitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 13.5,
-            'new_value': 34
-        },
-        "root['preprocessors']['preproc_tas_clim']['extract_region']['end_longitude']":
-        {
-            'old_type': float,
-            'new_type': int,
-            'old_value': 13.5,
-            'new_value': 34
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2016
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2016
+            }
         }
     },
-    'values_changed': {
-        "root['preprocessors']['crop_basin']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 3
-        },
-        "root['preprocessors']['crop_basin']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['crop_basin']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['preproc_pr']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 3
-        },
-        "root['preprocessors']['preproc_pr']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['preproc_pr']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['preproc_tas']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 3
-        },
-        "root['preprocessors']['preproc_tas']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['preproc_tas']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['preproc_pr_clim']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 3
-        },
-        "root['preprocessors']['preproc_pr_clim']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['preproc_pr_clim']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
-        },
-        "root['preprocessors']['preproc_tas_clim']['extract_region']['start_longitude']":
-        {
-            'new_value': 12,
-            'old_value': 3
-        },
-        "root['preprocessors']['preproc_tas_clim']['extract_region']['start_latitude']":
-        {
-            'new_value': 56,
-            'old_value': 45
-        },
-        "root['preprocessors']['preproc_tas_clim']['extract_region']['end_latitude']":
-        {
-            'new_value': 78,
-            'old_value': 54
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['pr_climatology']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tas_climatology']['start_year']":
+            {
+                'new_value': 1234,
+                'old_value': 1990
+            }
         }
-    }
-})
+    },
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['variables']['pr_climatology']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2002
+            },
+            "root['diagnostics']['diagnostic_daily']['variables']['tas_climatology']['end_year']":
+            {
+                'new_value': 4321,
+                'old_value': 2002
+            }
+        }
+    },
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['additional_datasets'][0]['dataset']":
+            {
+                'new_value': 'ERA5',
+                'old_value': 'ERA-Interim'
+            }
+        },
+        'iterable_item_removed': {
+            "root['diagnostics']['diagnostic_daily']['additional_datasets'][1]":
+            {
+                'dataset': 'ERA5',
+                'project': 'OBS6',
+                'tier': 3,
+                'type': 'reanaly',
+                'version': 1
+            }
+        }
+    },
+    {
+        'values_changed': {
+            "root['diagnostics']['diagnostic_daily']['scripts']['script']['basin']":
+            {
+                'new_value': 'meuse',
+                'old_value': 'rhine'
+            }
+        }
+    },
+    {
+        'type_changes': {
+            "root['preprocessors']['crop_basin']['extract_region']['end_longitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 13.5,
+                'new_value': 34
+            },
+            "root['preprocessors']['preproc_pr']['extract_region']['end_longitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 13.5,
+                'new_value': 34
+            },
+            "root['preprocessors']['preproc_tas']['extract_region']['end_longitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 13.5,
+                'new_value': 34
+            },
+            "root['preprocessors']['preproc_pr_clim']['extract_region']['end_longitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 13.5,
+                'new_value': 34
+            },
+            "root['preprocessors']['preproc_tas_clim']['extract_region']['end_longitude']":
+            {
+                'old_type': float,
+                'new_type': int,
+                'old_value': 13.5,
+                'new_value': 34
+            }
+        },
+        'values_changed': {
+            "root['preprocessors']['crop_basin']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 3
+            },
+            "root['preprocessors']['crop_basin']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['crop_basin']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['preproc_pr']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 3
+            },
+            "root['preprocessors']['preproc_pr']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['preproc_pr']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['preproc_tas']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 3
+            },
+            "root['preprocessors']['preproc_tas']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['preproc_tas']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['preproc_pr_clim']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 3
+            },
+            "root['preprocessors']['preproc_pr_clim']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['preproc_pr_clim']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            },
+            "root['preprocessors']['preproc_tas_clim']['extract_region']['start_longitude']":
+            {
+                'new_value': 12,
+                'old_value': 3
+            },
+            "root['preprocessors']['preproc_tas_clim']['extract_region']['start_latitude']":
+            {
+                'new_value': 56,
+                'old_value': 45
+            },
+            "root['preprocessors']['preproc_tas_clim']['extract_region']['end_latitude']":
+            {
+                'new_value': 78,
+                'old_value': 54
+            }
+        }
+    },
+)
 
 TEST_CASES_MARRMOT = list(zip(TEST_INPUT_MARRMOT, EXPECTED_DIFF_MARRMOT))
 TEST_CASES_LISFLOOD = list(zip(TEST_INPUT_LISFLOOD, EXPECTED_DIFF_LISFLOOD))
