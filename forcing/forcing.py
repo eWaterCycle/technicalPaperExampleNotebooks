@@ -26,11 +26,61 @@ def update_hype(data: dict, **kwargs):
     raise NotImplementedError
 
 
-def update_lisflood(data: dict, **kwargs):
+def update_lisflood(data: dict, *,     
+    forcings: list = None,
+    startyear: int = None,
+    endyear: int = None,
+    shapefile: str = None,
+    extract_region: dict = None,
+    ):
     """
-    Update marmott recipe data in-place.
+    Update lisflood recipe data in-place.
+
+    Parameters
+    ----------
+    forcings : list
+        List of forcings to use
+    startyear : int
+        Start year for the observation data
+    endyear : int
+        End year for the observation data
+    basin : str
+        Name of the basin to use. Defines the shapefile.
+    extract_region : dict
+        Region specification, must contain `start_longitude`, 
+        `end_longitude`, `start_latitude`, `end_latitude`
     """
-    raise NotImplementedError
+    preproc_names = ('general', 'daily_water', 'daily_temperature', 
+        'daily_radiation', 'daily_windspeed')
+
+    if shapefile is not None:
+        basin = Path(shapefile).stem
+        for preproc_name in preproc_names:
+            data['preprocessors'][preproc_name]['extract_shape'][
+                'shapefile'] = shapefile
+        data['diagnostics']['diagnostic_daily']['scripts']['script'][
+            'catchment'] = basin
+
+    if extract_region is not None:
+        for preproc_name in preproc_names:
+            data['preprocessors'][preproc_name]['extract_region'] = extract_region
+
+    if forcings is not None:
+        datasets = [FORCINGS[forcing] for forcing in forcings]
+        data['datasets'] = datasets
+
+    variables = data['diagnostics']['diagnostic_daily']['variables']
+    var_names = 'pr', 'tas', 'tasmax', 'tasmin', 'tdps', 'uas', 'vas', 'rsds'
+
+    if startyear is not None:
+        for var_name in var_names:
+            variables[var_name]['start_year'] = startyear
+
+    if endyear is not None:
+        for var_name in var_names:
+            variables[var_name]['end_year'] = endyear
+
+    return data
 
 
 def update_marrmot(
@@ -55,6 +105,7 @@ def update_marrmot(
     basin : str
         Name of the basin to use. Defines the shapefile.
     """
+
     if shapefile is not None:
         basin = Path(shapefile).stem
         data['preprocessors']['daily']['extract_shape'][
@@ -67,29 +118,17 @@ def update_marrmot(
         data['diagnostics']['diagnostic_daily'][
             'additional_datasets'] = datasets
 
+    variables = data['diagnostics']['diagnostic_daily']['variables']
+    var_names = 'tas', 'pr', 'psl', 'rsds', 'rsdt'
+
     if startyear is not None:
-        data['diagnostics']['diagnostic_daily']['variables']['tas'][
-            'start_year'] = startyear
-        data['diagnostics']['diagnostic_daily']['variables']['pr'][
-            'start_year'] = startyear
-        data['diagnostics']['diagnostic_daily']['variables']['psl'][
-            'start_year'] = startyear
-        data['diagnostics']['diagnostic_daily']['variables']['rsds'][
-            'start_year'] = startyear
-        data['diagnostics']['diagnostic_daily']['variables']['rsdt'][
-            'start_year'] = startyear
+        for var_name in var_names:
+            variables[var_name]['start_year'] = startyear
 
     if endyear is not None:
-        data['diagnostics']['diagnostic_daily']['variables']['tas'][
-            'end_year'] = endyear
-        data['diagnostics']['diagnostic_daily']['variables']['pr'][
-            'end_year'] = endyear
-        data['diagnostics']['diagnostic_daily']['variables']['psl'][
-            'end_year'] = endyear
-        data['diagnostics']['diagnostic_daily']['variables']['rsds'][
-            'end_year'] = endyear
-        data['diagnostics']['diagnostic_daily']['variables']['rsdt'][
-            'end_year'] = endyear
+        for var_name in var_names:
+            variables[var_name]['end_year'] = endyear
+
 
     return data
 
