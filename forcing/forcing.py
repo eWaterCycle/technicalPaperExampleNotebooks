@@ -129,22 +129,93 @@ def update_marrmot(
         for var_name in var_names:
             variables[var_name]['end_year'] = endyear
 
-
     return data
 
 
 def update_pcrglobwb(data: dict, **kwargs):
     """
-    Update marmott recipe data in-place.
+    Update pcrglobwb recipe data in-place.
+    
+    Parameters
+    ----------
+    forcings : list
+        List of forcings to use
+    startyear : int
+        Start year for the observation data
+    endyear : int
+        End year for the observation data
+    extract_region : dict
+        Region specification, must contain `start_longitude`, 
+        `end_longitude`, `start_latitude`, `end_latitude`
     """
-    raise NotImplementedError
+    if forcings is not None:
+        datasets = [FORCINGS[forcing] for forcing in forcings]
+        data['diagnostics']['diagnostic_daily'][
+            'additional_datasets'] = datasets
+
+    variables = data['diagnostics']['diagnostic_daily']['variables']
+    var_names = 'tas', 'pr', 'psl', 'rsds', 'rsdt'
+
+    if startyear is not None:
+        for var_name in var_names:
+            variables[var_name]['start_year'] = startyear
+
+    if endyear is not None:
+        for var_name in var_names:
+            variables[var_name]['end_year'] = endyear
+
+    return data
 
 
-def update_wflow(data: dict, **kwargs):
+def update_wflow(data: dict, 
+    *,
+    forcings: list = None,
+    startyear: int = None,
+    endyear: int = None,
+    extract_region: dict = None,
+    dem_file: str = None,):
     """
-    Update marmott recipe data in-place.
+    Update wflow recipe data in-place.
+
+    Parameters
+    ----------
+    forcings : list
+        List of forcings to use
+    startyear : int
+        Start year for the observation data
+    endyear : int
+        End year for the observation data
+    extract_region : dict
+        Region specification, must contain `start_longitude`, 
+        `end_longitude`, `start_latitude`, `end_latitude`
+    dem_file : str
+        Name of the dem_file to use. Also defines the basin param.
     """
-    raise NotImplementedError
+    if dem_file is not None:
+        script = data['diagnostics']['wflow_daily']['scripts']['script']
+        script['dem_file'] = dem_file
+        script['basin'] = Path(dem_file).stem
+
+    if extract_region is not None:
+        data['preprocessors']['rough_cutout']['extract_region'] = extract_region
+
+    if forcings is not None:
+        datasets = [FORCINGS[forcing] for forcing in forcings]
+        data['diagnostics']['wflow_daily'][
+            'additional_datasets'] = datasets
+
+    variables = data['diagnostics']['wflow_daily']['variables']
+    var_names = 'tas', 'pr', 'psl', 'rsds', 'rsdt'
+
+    if startyear is not None:
+        for var_name in var_names:
+            variables[var_name]['start_year'] = startyear
+
+    if endyear is not None:
+        for var_name in var_names:
+            variables[var_name]['end_year'] = endyear
+
+    return data
 
 
 MODEL_DATA = {

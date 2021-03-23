@@ -36,7 +36,8 @@ TEST_INPUT_WFLOW = (
     {'startyear': 1234},
     {'endyear': 4321},
     {'forcings': ['ERA5']},
-    {'shapefile': 'Rhine/Rhine.shp'},
+    {'dem_file': 'wflow/wflow_dem_Meuse.nc'},
+    {'extract_region': {'start_longitude': 12, 'end_longitude': 34, 'start_latitude': 56, 'end_latitude': 78}}
 )
 
 TEST_INPUT_PCRGLOBWB = (
@@ -176,7 +177,52 @@ EXPECTED_DIFF_LISFLOOD = ({},
     'old_value': 54}}})
 
 EXPECTED_DIFF_HYPE = ()
-EXPECTED_DIFF_WFLOW = ()
+EXPECTED_DIFF_WFLOW = (
+    {},
+ {'values_changed': {"root['diagnostics']['wflow_daily']['variables']['tas']['start_year']": {'new_value': 1234,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['pr']['start_year']": {'new_value': 1234,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['psl']['start_year']": {'new_value': 1234,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['rsds']['start_year']": {'new_value': 1234,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['rsdt']['start_year']": {'new_value': 1234,
+    'old_value': 1990}}},
+ {'values_changed': {"root['diagnostics']['wflow_daily']['variables']['tas']['end_year']": {'new_value': 4321,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['pr']['end_year']": {'new_value': 4321,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['psl']['end_year']": {'new_value': 4321,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['rsds']['end_year']": {'new_value': 4321,
+    'old_value': 1990},
+   "root['diagnostics']['wflow_daily']['variables']['rsdt']['end_year']": {'new_value': 4321,
+    'old_value': 1990}}},
+ {'values_changed': {"root['diagnostics']['wflow_daily']['additional_datasets'][0]['dataset']": {'new_value': 'ERA5',
+    'old_value': 'ERA-Interim'}},
+  'iterable_item_removed': {"root['diagnostics']['wflow_daily']['additional_datasets'][1]": {'dataset': 'ERA5',
+    'project': 'OBS6',
+    'tier': 3,
+    'type': 'reanaly',
+    'version': 1}}},
+ {'values_changed': {"root['diagnostics']['wflow_daily']['scripts']['script']['basin']": {'new_value': 'wflow_dem_Meuse',
+    'old_value': 'Meuse'}}},
+ {'type_changes': {"root['preprocessors']['rough_cutout']['extract_region']['end_longitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 6.75,
+    'new_value': 34},
+   "root['preprocessors']['rough_cutout']['extract_region']['start_latitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 47.25,
+    'new_value': 56},
+   "root['preprocessors']['rough_cutout']['extract_region']['end_latitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 52.5,
+    'new_value': 78}},
+  'values_changed': {"root['preprocessors']['rough_cutout']['extract_region']['start_longitude']": {'new_value': 12,
+    'old_value': 0}}})
+
 EXPECTED_DIFF_PCRGLOBWB = ()
 
 TEST_CASES_MARRMOT = list(zip(TEST_INPUT_MARRMOT, EXPECTED_DIFF_MARRMOT))
@@ -254,7 +300,6 @@ if __name__ == '__main__':
         'wflow': TEST_INPUT_WFLOW,
         'pcrglobwb': TEST_INPUT_PCRGLOBWB,
     }
-
 
     recipe = get_recipe(f'hydrology/recipe_{model}.yml')
     update_func = func_list[model]
