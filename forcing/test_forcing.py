@@ -7,6 +7,12 @@ from forcing import update_marrmot, update_lisflood, update_hype, update_wflow, 
 TEST_INPUT_MARRMOT = (
     {},
     {
+        'startyear': 1990,
+        'endyear': 2018,
+        'forcings': ['ERA-Interim', 'ERA5'],
+        'shapefile': 'Meuse/Meuse.shp',
+    },
+    {
         'startyear': 1234
     },
     {
@@ -22,6 +28,18 @@ TEST_INPUT_MARRMOT = (
 
 TEST_INPUT_LISFLOOD = (
     {},
+    {
+        'startyear': 1990,
+        'endyear': 1990,
+        'forcings': ['ERA-Interim', 'ERA5'],
+        'shapefile': 'Lorentz_Basin_Shapefiles/Meuse/Meuse.shp',
+        'extract_region': {
+            'start_longitude': 0,
+            'end_longitude': 9,
+            'start_latitude': 45,
+            'end_latitude': 54,
+        },
+    },
     {
         'startyear': 1234
     },
@@ -39,13 +57,19 @@ TEST_INPUT_LISFLOOD = (
             'start_longitude': 12,
             'end_longitude': 34,
             'start_latitude': 56,
-            'end_latitude': 78
+            'end_latitude': 78,
         }
     },
 )
 
 TEST_INPUT_HYPE = (
     {},
+    {
+        'startyear': 1979,
+        'endyear': 1979,
+        'forcings': ['ERA-Interim', 'ERA5'],
+        'shapefile': 'Meuse_HYPE.shp',
+    },
     {
         'startyear': 1234
     },
@@ -61,24 +85,49 @@ TEST_INPUT_HYPE = (
 )
 
 TEST_INPUT_WFLOW = ({}, {
+    'startyear': 1990,
+    'endyear': 1990,
+    'forcings': ['ERA-Interim', 'ERA5'],
+    'dem_file': 'wflow/wflow_dem_Meuse.nc',
+    'extract_region': {
+        'start_longitude': 0,
+        'end_longitude': 6.75,
+        'start_latitude': 47.25,
+        'end_latitude': 52.5,
+    },
+}, {
     'startyear': 1234
 }, {
     'endyear': 4321
 }, {
     'forcings': ['ERA5']
 }, {
-    'dem_file': 'wflow/wflow_dem_Meuse.nc'
+    'dem_file': 'wflow/wflow_dem_Rhine.nc'
 }, {
     'extract_region': {
         'start_longitude': 12,
         'end_longitude': 34,
         'start_latitude': 56,
-        'end_latitude': 78
+        'end_latitude': 78,
     }
 })
 
 TEST_INPUT_PCRGLOBWB = (
     {},
+    {
+        'startyear': 2002,
+        'endyear': 2016,
+        'startyear_climatology': 1990,
+        'endyear_climatology': 2002,
+        'forcings': ['ERA-Interim', 'ERA5'],
+        'basin': 'rhine',
+        'extract_region': {
+            'start_longitude': 3,
+            'end_longitude': 13.5,
+            'start_latitude': 45,
+            'end_latitude': 54,
+        },
+    },
     {
         'startyear': 1234
     },
@@ -102,12 +151,12 @@ TEST_INPUT_PCRGLOBWB = (
             'start_longitude': 12,
             'end_longitude': 34,
             'start_latitude': 56,
-            'end_latitude': 78
+            'end_latitude': 78,
         }
     },
 )
 
-EXPECTED_DIFF_MARRMOT = ({}, {
+EXPECTED_DIFF_MARRMOT = ({}, {}, {
     'values_changed': {
         "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']":
         {
@@ -194,7 +243,7 @@ EXPECTED_DIFF_MARRMOT = ({}, {
     }
 })
 
-EXPECTED_DIFF_LISFLOOD = ({}, {
+EXPECTED_DIFF_LISFLOOD = ({}, {}, {
     'values_changed': {
         "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
         {
@@ -431,7 +480,7 @@ EXPECTED_DIFF_LISFLOOD = ({}, {
     }
 })
 
-EXPECTED_DIFF_HYPE = ({}, {
+EXPECTED_DIFF_HYPE = ({}, {}, {
     'values_changed': {
         "root['diagnostics']['hype']['variables']['tas']['start_year']": {
             'new_value': 1234,
@@ -505,6 +554,13 @@ EXPECTED_DIFF_HYPE = ({}, {
 
 EXPECTED_DIFF_WFLOW = ({}, {
     'values_changed': {
+        "root['diagnostics']['wflow_daily']['scripts']['script']['basin']": {
+            'new_value': 'wflow_dem_Meuse',
+            'old_value': 'Meuse'
+        }
+    }
+}, {
+    'values_changed': {
         "root['diagnostics']['wflow_daily']['variables']['tas']['start_year']":
         {
             'new_value': 1234,
@@ -576,8 +632,13 @@ EXPECTED_DIFF_WFLOW = ({}, {
 }, {
     'values_changed': {
         "root['diagnostics']['wflow_daily']['scripts']['script']['basin']": {
-            'new_value': 'wflow_dem_Meuse',
+            'new_value': 'wflow_dem_Rhine',
             'old_value': 'Meuse'
+        },
+        "root['diagnostics']['wflow_daily']['scripts']['script']['dem_file']":
+        {
+            'new_value': 'wflow/wflow_dem_Rhine.nc',
+            'old_value': 'wflow/wflow_dem_Meuse.nc'
         }
     }
 }, {
@@ -613,7 +674,7 @@ EXPECTED_DIFF_WFLOW = ({}, {
     }
 })
 
-EXPECTED_DIFF_PCRGLOBWB = ({}, {
+EXPECTED_DIFF_PCRGLOBWB = ({}, {}, {
     'values_changed': {
         "root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']":
         {
@@ -821,7 +882,8 @@ def _test_forcing(recipe, update_func, params, expected_diff):
     diff = deepdiff.DeepDiff(recipe.data, data)
 
     if not diff == expected_diff:
-        raise AssertionError('\n' + diff.pretty())
+        raise AssertionError(
+            f'Expected: {expected_diff}\nActual: {diff.pretty()}')
 
 
 @pytest.mark.parametrize('params, expected_diff', TEST_CASES_MARRMOT)
@@ -865,7 +927,7 @@ def test_forcing_pcrglobwb(params, expected_diff):
 
 
 if __name__ == '__main__':
-    model = 'hype'
+    model = 'wflow'
 
     func_list = {
         'marrmot': update_marrmot,
@@ -899,4 +961,5 @@ if __name__ == '__main__':
         NEW_TEST_CASES.append(diff)
 
     NEW_TEST_CASES = tuple(NEW_TEST_CASES)
+
     breakpoint()
