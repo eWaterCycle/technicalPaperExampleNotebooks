@@ -28,7 +28,7 @@ TEST_INPUT_HYPE = (
     {'startyear': 1234},
     {'endyear': 4321},
     {'forcings': ['ERA5']},
-    {'shapefile': 'Rhine/Rhine.shp'},
+    {'shapefile': 'Rhine_HYPE.shp'},
 )
 
 TEST_INPUT_WFLOW = (
@@ -179,7 +179,38 @@ EXPECTED_DIFF_LISFLOOD = ({},
    "root['preprocessors']['daily_windspeed']['extract_region']['end_latitude']": {'new_value': 78,
     'old_value': 54}}})
 
-EXPECTED_DIFF_HYPE = ()
+EXPECTED_DIFF_HYPE = (
+ {},
+ {'values_changed': {"root['diagnostics']['hype']['variables']['tas']['start_year']": {'new_value': 1234,
+    'old_value': 1979},
+   "root['diagnostics']['hype']['variables']['tasmin']['start_year']": {'new_value': 1234,
+    'old_value': 1979},
+   "root['diagnostics']['hype']['variables']['tasmax']['start_year']": {'new_value': 1234,
+    'old_value': 1979},
+   "root['diagnostics']['hype']['variables']['pr']['start_year']": {'new_value': 1234,
+    'old_value': 1979}}},
+ {'values_changed': {"root['diagnostics']['hype']['variables']['tas']['end_year']": {'new_value': 4321,
+    'old_value': 1979},
+   "root['diagnostics']['hype']['variables']['tasmin']['end_year']": {'new_value': 4321,
+    'old_value': 1979},
+   "root['diagnostics']['hype']['variables']['tasmax']['end_year']": {'new_value': 4321,
+    'old_value': 1979},
+   "root['diagnostics']['hype']['variables']['pr']['end_year']": {'new_value': 4321,
+    'old_value': 1979}}},
+ {'values_changed': {"root['datasets'][0]['dataset']": {'new_value': 'ERA5',
+    'old_value': 'ERA-Interim'}},
+  'iterable_item_removed': {"root['datasets'][1]": {'dataset': 'ERA5',
+    'project': 'OBS6',
+    'tier': 3,
+    'type': 'reanaly',
+    'version': 1}}},
+ {'values_changed': {"root['preprocessors']['preprocessor']['extract_shape']['shapefile']": {'new_value': 'Rhine_HYPE.shp',
+    'old_value': 'Meuse_HYPE.shp'},
+   "root['preprocessors']['temperature']['extract_shape']['shapefile']": {'new_value': 'Rhine_HYPE.shp',
+    'old_value': 'Meuse_HYPE.shp'},
+   "root['preprocessors']['water']['extract_shape']['shapefile']": {'new_value': 'Rhine_HYPE.shp',
+    'old_value': 'Meuse_HYPE.shp'}}})
+
 EXPECTED_DIFF_WFLOW = (
     {},
  {'values_changed': {"root['diagnostics']['wflow_daily']['variables']['tas']['start_year']": {'new_value': 1234,
@@ -362,7 +393,7 @@ def test_forcing_pcrglobwb(params, expected_diff):
 
 
 if __name__ == '__main__':
-    model = 'pcrglobwb'
+    model = 'hype'
     
     func_list = {
         'marrmot': update_marrmot,

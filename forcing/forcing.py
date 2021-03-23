@@ -19,11 +19,50 @@ FORCINGS = {
 }
 
 
-def update_hype(data: dict, **kwargs):
+def update_hype(data: dict, 
+    *,
+    forcings: list = None,
+    startyear: int = None,
+    endyear: int = None,
+    shapefile: str = None,
+    ):
     """
-    Update marmott recipe data in-place.
+    Update hype recipe data in-place.
+    
+    Parameters
+    ----------
+    forcings : list
+        List of forcings to use
+    startyear : int
+        Start year for the observation data
+    endyear : int
+        End year for the observation data
+    shapefile : str
+        Name of the shapefile to use.
     """
-    raise NotImplementedError
+    preproc_names = ('preprocessor', 'temperature', 'water')
+
+    if shapefile is not None:
+        for preproc_name in preproc_names:
+            data['preprocessors'][preproc_name]['extract_shape'][
+                'shapefile'] = shapefile
+
+    if forcings is not None:
+        datasets = [FORCINGS[forcing] for forcing in forcings]
+        data['datasets'] = datasets
+
+    variables = data['diagnostics']['hype']['variables']
+    var_names = 'tas', 'tasmin', 'tasmax', 'pr'
+
+    if startyear is not None:
+        for var_name in var_names:
+            variables[var_name]['start_year'] = startyear
+
+    if endyear is not None:
+        for var_name in var_names:
+            variables[var_name]['end_year'] = endyear
+
+    return data
 
 
 def update_lisflood(data: dict, *,     
