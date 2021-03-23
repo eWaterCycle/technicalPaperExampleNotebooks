@@ -19,13 +19,14 @@ FORCINGS = {
 }
 
 
-def update_hype(data: dict, 
+def update_hype(
+    data: dict,
     *,
     forcings: list = None,
     startyear: int = None,
     endyear: int = None,
     shapefile: str = None,
-    ):
+):
     """
     Update hype recipe data in-place.
     
@@ -65,13 +66,15 @@ def update_hype(data: dict,
     return data
 
 
-def update_lisflood(data: dict, *,     
+def update_lisflood(
+    data: dict,
+    *,
     forcings: list = None,
     startyear: int = None,
     endyear: int = None,
     shapefile: str = None,
     extract_region: dict = None,
-    ):
+):
     """
     Update lisflood recipe data in-place.
 
@@ -89,8 +92,8 @@ def update_lisflood(data: dict, *,
         Region specification, must contain `start_longitude`, 
         `end_longitude`, `start_latitude`, `end_latitude`
     """
-    preproc_names = ('general', 'daily_water', 'daily_temperature', 
-        'daily_radiation', 'daily_windspeed')
+    preproc_names = ('general', 'daily_water', 'daily_temperature',
+                     'daily_radiation', 'daily_windspeed')
 
     if shapefile is not None:
         basin = Path(shapefile).stem
@@ -102,7 +105,8 @@ def update_lisflood(data: dict, *,
 
     if extract_region is not None:
         for preproc_name in preproc_names:
-            data['preprocessors'][preproc_name]['extract_region'] = extract_region
+            data['preprocessors'][preproc_name][
+                'extract_region'] = extract_region
 
     if forcings is not None:
         datasets = [FORCINGS[forcing] for forcing in forcings]
@@ -172,14 +176,14 @@ def update_marrmot(
 
 
 def update_pcrglobwb(data: dict,
-    *,
-    forcings: list = None,
-    basin: str = None,
-    startyear: int = None,
-    endyear: int = None,
-    startyear_climatology: int = None,
-    endyear_climatology: int = None,
-    extract_region: dict = None):
+                     *,
+                     forcings: list = None,
+                     basin: str = None,
+                     startyear: int = None,
+                     endyear: int = None,
+                     startyear_climatology: int = None,
+                     endyear_climatology: int = None,
+                     extract_region: dict = None):
     """
     Update pcrglobwb recipe data in-place.
     
@@ -201,11 +205,8 @@ def update_pcrglobwb(data: dict,
         Region specification, must contain `start_longitude`, 
         `end_longitude`, `start_latitude`, `end_latitude`
     """
-    preproc_names = ('crop_basin',
-    'preproc_pr',
-    'preproc_tas',
-    'preproc_pr_clim',
-    'preproc_tas_clim')
+    preproc_names = ('crop_basin', 'preproc_pr', 'preproc_tas',
+                     'preproc_pr_clim', 'preproc_tas_clim')
 
     if forcings is not None:
         datasets = [FORCINGS[forcing] for forcing in forcings]
@@ -213,12 +214,14 @@ def update_pcrglobwb(data: dict,
             'additional_datasets'] = datasets
 
     if basin is not None:
-        data['diagnostics']['diagnostic_daily']['scripts']['script']['basin'] = basin
+        data['diagnostics']['diagnostic_daily']['scripts']['script'][
+            'basin'] = basin
 
     if extract_region is not None:
         for preproc_name in preproc_names:
-            data['preprocessors'][preproc_name]['extract_region'] = extract_region
-    
+            data['preprocessors'][preproc_name][
+                'extract_region'] = extract_region
+
     variables = data['diagnostics']['diagnostic_daily']['variables']
     var_names = 'tas', 'pr'
 
@@ -243,13 +246,15 @@ def update_pcrglobwb(data: dict,
     return data
 
 
-def update_wflow(data: dict, 
+def update_wflow(
+    data: dict,
     *,
     forcings: list = None,
     startyear: int = None,
     endyear: int = None,
     extract_region: dict = None,
-    dem_file: str = None,):
+    dem_file: str = None,
+):
     """
     Update wflow recipe data in-place.
 
@@ -273,12 +278,12 @@ def update_wflow(data: dict,
         script['basin'] = Path(dem_file).stem
 
     if extract_region is not None:
-        data['preprocessors']['rough_cutout']['extract_region'] = extract_region
+        data['preprocessors']['rough_cutout'][
+            'extract_region'] = extract_region
 
     if forcings is not None:
         datasets = [FORCINGS[forcing] for forcing in forcings]
-        data['diagnostics']['wflow_daily'][
-            'additional_datasets'] = datasets
+        data['diagnostics']['wflow_daily']['additional_datasets'] = datasets
 
     variables = data['diagnostics']['wflow_daily']['variables']
     var_names = 'tas', 'pr', 'psl', 'rsds', 'rsdt'
