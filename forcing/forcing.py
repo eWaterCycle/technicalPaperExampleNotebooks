@@ -317,7 +317,7 @@ MODEL_DATA = {
         'update_func': update_pcrglobwb,
     },
     'wflow': {
-        'recipe_name': 'hydrology/recipe_wflowyml',
+        'recipe_name': 'hydrology/recipe_wflow.yml',
         'update_func': update_wflow,
     },
 }
