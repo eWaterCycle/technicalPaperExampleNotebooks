@@ -132,7 +132,15 @@ def update_marrmot(
     return data
 
 
-def update_pcrglobwb(data: dict, **kwargs):
+def update_pcrglobwb(data: dict,
+    *,
+    forcings: list = None,
+    basin: str = None,
+    startyear: int = None,
+    endyear: int = None,
+    startyear_climatology: int = None,
+    endyear_climatology: int = None,
+    extract_region: dict = None):
     """
     Update pcrglobwb recipe data in-place.
     
@@ -140,21 +148,40 @@ def update_pcrglobwb(data: dict, **kwargs):
     ----------
     forcings : list
         List of forcings to use
+    basin : str
+        Name of the basin (used for data output filename only)
     startyear : int
         Start year for the observation data
     endyear : int
         End year for the observation data
+    startyear_climatology : int
+        Start year for the climatology data
+    endyear_climatology : int
+        End year for the climatology data
     extract_region : dict
         Region specification, must contain `start_longitude`, 
         `end_longitude`, `start_latitude`, `end_latitude`
     """
+    preproc_names = ('crop_basin',
+    'preproc_pr',
+    'preproc_tas',
+    'preproc_pr_clim',
+    'preproc_tas_clim')
+
     if forcings is not None:
         datasets = [FORCINGS[forcing] for forcing in forcings]
         data['diagnostics']['diagnostic_daily'][
             'additional_datasets'] = datasets
 
+    if basin is not None:
+        data['diagnostics']['diagnostic_daily']['scripts']['script']['basin'] = basin
+
+    if extract_region is not None:
+        for preproc_name in preproc_names:
+            data['preprocessors'][preproc_name]['extract_region'] = extract_region
+    
     variables = data['diagnostics']['diagnostic_daily']['variables']
-    var_names = 'tas', 'pr', 'psl', 'rsds', 'rsdt'
+    var_names = 'tas', 'pr'
 
     if startyear is not None:
         for var_name in var_names:
@@ -163,6 +190,16 @@ def update_pcrglobwb(data: dict, **kwargs):
     if endyear is not None:
         for var_name in var_names:
             variables[var_name]['end_year'] = endyear
+
+    var_names_climatology = 'pr_climatology', 'tas_climatology'
+
+    if startyear_climatology is not None:
+        for var_name in var_names_climatology:
+            variables[var_name]['start_year'] = startyear_climatology
+
+    if endyear_climatology is not None:
+        for var_name in var_names_climatology:
+            variables[var_name]['end_year'] = endyear_climatology
 
     return data
 

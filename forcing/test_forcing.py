@@ -44,8 +44,11 @@ TEST_INPUT_PCRGLOBWB = (
     {},
     {'startyear': 1234},
     {'endyear': 4321},
+    {'startyear_climatology': 1234},
+    {'endyear_climatology' : 4321},
     {'forcings': ['ERA5']},
-    {'shapefile': 'Rhine/Rhine.shp'},
+    {'basin' : 'meuse'},
+    {'extract_region': {'start_longitude': 12, 'end_longitude': 34, 'start_latitude': 56, 'end_latitude': 78}},
 )
 
 EXPECTED_DIFF_MARRMOT = (
@@ -223,7 +226,83 @@ EXPECTED_DIFF_WFLOW = (
   'values_changed': {"root['preprocessors']['rough_cutout']['extract_region']['start_longitude']": {'new_value': 12,
     'old_value': 0}}})
 
-EXPECTED_DIFF_PCRGLOBWB = ()
+EXPECTED_DIFF_PCRGLOBWB = (
+    {},
+ {'values_changed': {"root['diagnostics']['diagnostic_daily']['variables']['pr']['start_year']": {'new_value': 1234,
+    'old_value': 2002},
+   "root['diagnostics']['diagnostic_daily']['variables']['tas']['start_year']": {'new_value': 1234,
+    'old_value': 2002}}},
+ {'values_changed': {"root['diagnostics']['diagnostic_daily']['variables']['pr']['end_year']": {'new_value': 4321,
+    'old_value': 2016},
+   "root['diagnostics']['diagnostic_daily']['variables']['tas']['end_year']": {'new_value': 4321,
+    'old_value': 2016}}},
+ {'values_changed': {"root['diagnostics']['diagnostic_daily']['variables']['pr_climatology']['start_year']": {'new_value': 1234,
+    'old_value': 1990},
+   "root['diagnostics']['diagnostic_daily']['variables']['tas_climatology']['start_year']": {'new_value': 1234,
+    'old_value': 1990}}},
+ {'values_changed': {"root['diagnostics']['diagnostic_daily']['variables']['pr_climatology']['end_year']": {'new_value': 4321,
+    'old_value': 2002},
+   "root['diagnostics']['diagnostic_daily']['variables']['tas_climatology']['end_year']": {'new_value': 4321,
+    'old_value': 2002}}},
+ {'values_changed': {"root['diagnostics']['diagnostic_daily']['additional_datasets'][0]['dataset']": {'new_value': 'ERA5',
+    'old_value': 'ERA-Interim'}},
+  'iterable_item_removed': {"root['diagnostics']['diagnostic_daily']['additional_datasets'][1]": {'dataset': 'ERA5',
+    'project': 'OBS6',
+    'tier': 3,
+    'type': 'reanaly',
+    'version': 1}}},
+ {'values_changed': {"root['diagnostics']['diagnostic_daily']['scripts']['script']['basin']": {'new_value': 'meuse',
+    'old_value': 'rhine'}}},
+ {'type_changes': {"root['preprocessors']['crop_basin']['extract_region']['end_longitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 13.5,
+    'new_value': 34},
+   "root['preprocessors']['preproc_pr']['extract_region']['end_longitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 13.5,
+    'new_value': 34},
+   "root['preprocessors']['preproc_tas']['extract_region']['end_longitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 13.5,
+    'new_value': 34},
+   "root['preprocessors']['preproc_pr_clim']['extract_region']['end_longitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 13.5,
+    'new_value': 34},
+   "root['preprocessors']['preproc_tas_clim']['extract_region']['end_longitude']": {'old_type': float,
+    'new_type': int,
+    'old_value': 13.5,
+    'new_value': 34}},
+  'values_changed': {"root['preprocessors']['crop_basin']['extract_region']['start_longitude']": {'new_value': 12,
+    'old_value': 3},
+   "root['preprocessors']['crop_basin']['extract_region']['start_latitude']": {'new_value': 56,
+    'old_value': 45},
+   "root['preprocessors']['crop_basin']['extract_region']['end_latitude']": {'new_value': 78,
+    'old_value': 54},
+   "root['preprocessors']['preproc_pr']['extract_region']['start_longitude']": {'new_value': 12,
+    'old_value': 3},
+   "root['preprocessors']['preproc_pr']['extract_region']['start_latitude']": {'new_value': 56,
+    'old_value': 45},
+   "root['preprocessors']['preproc_pr']['extract_region']['end_latitude']": {'new_value': 78,
+    'old_value': 54},
+   "root['preprocessors']['preproc_tas']['extract_region']['start_longitude']": {'new_value': 12,
+    'old_value': 3},
+   "root['preprocessors']['preproc_tas']['extract_region']['start_latitude']": {'new_value': 56,
+    'old_value': 45},
+   "root['preprocessors']['preproc_tas']['extract_region']['end_latitude']": {'new_value': 78,
+    'old_value': 54},
+   "root['preprocessors']['preproc_pr_clim']['extract_region']['start_longitude']": {'new_value': 12,
+    'old_value': 3},
+   "root['preprocessors']['preproc_pr_clim']['extract_region']['start_latitude']": {'new_value': 56,
+    'old_value': 45},
+   "root['preprocessors']['preproc_pr_clim']['extract_region']['end_latitude']": {'new_value': 78,
+    'old_value': 54},
+   "root['preprocessors']['preproc_tas_clim']['extract_region']['start_longitude']": {'new_value': 12,
+    'old_value': 3},
+   "root['preprocessors']['preproc_tas_clim']['extract_region']['start_latitude']": {'new_value': 56,
+    'old_value': 45},
+   "root['preprocessors']['preproc_tas_clim']['extract_region']['end_latitude']": {'new_value': 78,
+    'old_value': 54}}})
 
 TEST_CASES_MARRMOT = list(zip(TEST_INPUT_MARRMOT, EXPECTED_DIFF_MARRMOT))
 TEST_CASES_LISFLOOD = list(zip(TEST_INPUT_LISFLOOD, EXPECTED_DIFF_LISFLOOD))
@@ -283,7 +362,7 @@ def test_forcing_pcrglobwb(params, expected_diff):
 
 
 if __name__ == '__main__':
-    model = 'wflow'
+    model = 'pcrglobwb'
     
     func_list = {
         'marrmot': update_marrmot,
