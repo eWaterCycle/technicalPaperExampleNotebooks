@@ -1,0 +1,227 @@
+2021-09-22 08:41:14,145 disclaimer INFO 
+
+ PCR-GLOBWB (PCRaster Global Water Balance) Global Hydrological Model                       
+
+ Copyright (C) 2016, Ludovicus P. H. (Rens) van Beek, Edwin H. Sutanudjaja, Yoshihide Wada, 
+ Joyce H. C. Bosmans, Niels Drost, Inge E. M. de Graaf, Kor de Jong, Patricia Lopez Lopez,  
+ Stefanie Pessenteiner, Oliver Schmitz, Menno W. Straatsma, Niko Wanders, Dominik Wisser,   
+ and Marc F. P. Bierkens,                                                                   
+ Faculty of Geosciences, Utrecht University, Utrecht, The Netherlands                       
+
+ This program comes with ABSOLUTELY NO WARRANTY                                             
+ This is free software, and you are welcome to redistribute it under certain conditions     
+ See the LICENSE file for more details                                                      
+
+
+2021-09-22 08:41:14,145 configuration INFO Model run started at 2021-09-22 08:41:14.139300
+2021-09-22 08:41:14,145 configuration INFO Logging output to /home/rhut/technicalPaperExampleNotebooks/ewatercycle_output/pcrglobwb_20210922_084109/log/pcrglobwb_ewatercycle.ini_2021-09-22T08.41.14.139300.log
+2021-09-22 08:41:14,145 configuration INFO Debugging output to /home/rhut/technicalPaperExampleNotebooks/ewatercycle_output/pcrglobwb_20210922_084109/log/pcrglobwb_ewatercycle.ini_2021-09-22T08.41.14.139300.dbg
+2021-09-22 08:41:14,146 configuration WARNING The option "useMODFLOW" is not defined in the "groundwaterOptions" of the configuration file. We assume "False" for this option.
+2021-09-22 08:41:14,146 configuration WARNING The option "maximumDailyGroundwaterAbstraction" is not defined in the "groundwaterOptions" of the configuration file. This run assumes "0.050 m/day" for this option.
+2021-09-22 08:41:14,146 configuration WARNING The option "maximumDailyFossilGroundwaterAbstraction" is not defined in the "groundwaterOptions" of the configuration file. This run assumes "0.020 m/day" for this option.
+2021-09-22 08:41:15,180 currTimeStep INFO number of time steps: 365
+2021-09-22 08:41:15,180 bmiPcrglobwb INFO Shape of maps is (54, 54)
+2021-09-22 08:41:15,180 bmiPcrglobwb INFO PCRGlobWB: initialize_model, source dir <empty> is not used
+2021-09-22 08:41:16,309 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/lddsound_05min.map
+2021-09-22 08:41:16,914 virtualOS DEBUG read file/values: global_05min/cloneMaps/merrimack_05min.map
+2021-09-22 08:41:16,937 virtualOS DEBUG read file/values: global_05min/cloneMaps/merrimack_05min.map
+2021-09-22 08:41:16,962 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:16,963 virtualOS DEBUG read file/values: 1.0
+2021-09-22 08:41:16,963 virtualOS DEBUG read file/values: -273.15
+2021-09-22 08:41:16,963 virtualOS DEBUG read file/values: 1.0
+2021-09-22 08:41:16,963 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:16,963 virtualOS DEBUG read file/values: 1.0
+2021-09-22 08:41:16,963 meteo INFO Precipitation forcing will be downscaled to the cloneMap resolution.
+2021-09-22 08:41:16,963 meteo INFO Temperature forcing will be downscaled to the cloneMap resolution.
+2021-09-22 08:41:16,963 virtualOS DEBUG read file/values: global_05min/meteo/downscaling_from_30min/gtopo05min.map
+2021-09-22 08:41:17,612 virtualOS DEBUG read file/values: global_05min/meteo/downscaling_from_30min/uniqueIds_30min.map
+2021-09-22 08:41:17,783 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:18,543 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:18,827 landSurface INFO Irrigation is included/considered in this run.
+2021-09-22 08:41:18,827 landSurface INFO Domestic water demand is included in the calculation.
+2021-09-22 08:41:18,827 landSurface INFO Industry water demand is included in the calculation.
+2021-09-22 08:41:18,827 landSurface INFO Livestock water demand is included in the calculation.
+2021-09-22 08:41:18,827 landSurface INFO Using the dynamicIrrigationArea option. Extent of irrigation areas is based on the file provided in the 'historicalIrrigationArea'.
+2021-09-22 08:41:18,827 virtualOS DEBUG read file/values: global_30min/waterUse/irrigation/irrigation_efficiency/efficiency.map
+2021-09-22 08:41:19,105 landSurface INFO Monthly desalination water is included.
+2021-09-22 08:41:19,105 virtualOS DEBUG read file/values: global_05min/waterUse/abstraction_zones/abstraction_zones_60min_05min.map
+2021-09-22 08:41:19,606 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:19,941 landSurface INFO Using/incorporating the predefined surface water source of Siebert et al. (2010) for satisfying irrigation and livestock demand.
+2021-09-22 08:41:19,941 virtualOS DEBUG read file/values: global_05min/waterUse/source_partitioning/surface_water_fraction_for_irrigation/AEI_SWFRAC.map
+2021-09-22 08:41:20,505 virtualOS DEBUG read file/values: global_05min/waterUse/source_partitioning/surface_water_fraction_for_irrigation/AEI_QUAL.map
+2021-09-22 08:41:21,158 landSurface INFO Using/incorporating the predefined surface water source of McDonald et al. (2014) for satisfying domestic and industrial demand.
+2021-09-22 08:41:21,158 virtualOS DEBUG read file/values: global_30min/waterUse/source_partitioning/surface_water_fraction_for_non_irrigation/max_city_sw_fraction.map
+2021-09-22 08:41:21,441 virtualOS DEBUG read file/values: 0.50
+2021-09-22 08:41:21,441 virtualOS DEBUG read file/values: 0.70
+2021-09-22 08:41:21,441 virtualOS DEBUG reading variable: tanslope from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:22,006 virtualOS DEBUG reading variable: slopeLength from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:22,367 virtualOS DEBUG reading variable: orographyBeta from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:22,595 virtualOS DEBUG reading variable: dzRel0001 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:23,021 virtualOS DEBUG reading variable: dzRel0005 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:23,251 virtualOS DEBUG reading variable: dzRel0010 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:23,486 virtualOS DEBUG reading variable: dzRel0020 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:23,734 virtualOS DEBUG reading variable: dzRel0030 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:24,001 virtualOS DEBUG reading variable: dzRel0040 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:24,223 virtualOS DEBUG reading variable: dzRel0050 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:24,444 virtualOS DEBUG reading variable: dzRel0060 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:24,672 virtualOS DEBUG reading variable: dzRel0070 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:24,900 virtualOS DEBUG reading variable: dzRel0080 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:25,279 virtualOS DEBUG reading variable: dzRel0090 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:25,519 virtualOS DEBUG reading variable: dzRel0100 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/topography/topography_parameters_5_arcmin_october_2015.nc
+2021-09-22 08:41:25,906 virtualOS DEBUG reading variable: airEntryValue1 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:27,904 virtualOS DEBUG reading variable: airEntryValue2 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:28,680 virtualOS DEBUG reading variable: poreSizeBeta1 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:30,321 virtualOS DEBUG reading variable: poreSizeBeta2 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:31,034 virtualOS DEBUG reading variable: resVolWC1 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:31,529 virtualOS DEBUG reading variable: resVolWC2 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:32,004 virtualOS DEBUG reading variable: satVolWC1 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:32,277 virtualOS DEBUG reading variable: satVolWC2 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:32,543 virtualOS DEBUG reading variable: KSat1 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:32,806 virtualOS DEBUG reading variable: KSat2 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:33,069 virtualOS DEBUG reading variable: percolationImp from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:33,333 virtualOS DEBUG reading variable: firstStorDepth from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:33,597 virtualOS DEBUG reading variable: secondStorDepth from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:33,856 virtualOS DEBUG reading variable: soilWaterStorageCap1 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:34,140 virtualOS DEBUG reading variable: soilWaterStorageCap2 from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/landSurface/soil/soilProperties5ArcMin.nc
+2021-09-22 08:41:34,411 landSurface INFO Using the default set of soil and topo parameters as defined in the landSurfaceOptions of the ini/configuration file.
+2021-09-22 08:41:34,412 landSurface INFO Using the default set of soil and topo parameters as defined in the landSurfaceOptions of the ini/configuration file.
+2021-09-22 08:41:34,412 landSurface INFO Using the default set of soil and topo parameters as defined in the landSurfaceOptions of the ini/configuration file.
+2021-09-22 08:41:34,412 landSurface INFO Using the default set of soil and topo parameters as defined in the landSurfaceOptions of the ini/configuration file.
+2021-09-22 08:41:34,412 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:34,412 virtualOS DEBUG read file/values: 0.0025
+2021-09-22 08:41:34,412 virtualOS DEBUG read file/values: 0.1
+2021-09-22 08:41:34,412 virtualOS DEBUG read file/values: 0.05
+2021-09-22 08:41:34,412 landCover DEBUG Obtaining the land cover parameters that are fixed for the entire simulation.
+2021-09-22 08:41:34,412 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/naturalTall/minf_tall_permafrost.map
+2021-09-22 08:41:34,919 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/naturalTall/maxf_tall.map
+2021-09-22 08:41:35,358 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/naturalTall/rfrac1_tall.map
+2021-09-22 08:41:36,156 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/naturalTall/rfrac2_tall.map
+2021-09-22 08:41:36,859 virtualOS DEBUG read file/values: 1.0
+2021-09-22 08:41:36,859 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/naturalTall/vegf_tall.map
+2021-09-22 08:41:38,588 landCover DEBUG The parameter arnoBeta is approximated from the minSoilDepthFrac and maxSoilDepthFrac values.
+2021-09-22 08:41:38,591 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:38,591 virtualOS DEBUG read file/values: 0.2
+2021-09-22 08:41:38,591 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:38,974 virtualOS DEBUG read file/values: global_05min/waterUse/abstraction_zones/abstraction_zones_60min_05min.map
+2021-09-22 08:41:39,383 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:39,383 virtualOS DEBUG read file/values: 0.0025
+2021-09-22 08:41:39,383 virtualOS DEBUG read file/values: 0.1
+2021-09-22 08:41:39,383 virtualOS DEBUG read file/values: 0.05
+2021-09-22 08:41:39,383 landCover DEBUG Obtaining the land cover parameters that are fixed for the entire simulation.
+2021-09-22 08:41:39,383 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/naturalShort/minf_short_permafrost.map
+2021-09-22 08:41:39,731 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/naturalShort/maxf_short.map
+2021-09-22 08:41:40,085 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/naturalShort/rfrac1_short.map
+2021-09-22 08:41:41,018 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/naturalShort/rfrac2_short.map
+2021-09-22 08:41:42,344 virtualOS DEBUG read file/values: 0.5
+2021-09-22 08:41:42,345 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/naturalShort/vegf_short.map
+2021-09-22 08:41:42,916 landCover DEBUG The parameter arnoBeta is approximated from the minSoilDepthFrac and maxSoilDepthFrac values.
+2021-09-22 08:41:42,919 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:42,919 virtualOS DEBUG read file/values: 0.2
+2021-09-22 08:41:42,919 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:43,362 virtualOS DEBUG read file/values: global_05min/waterUse/abstraction_zones/abstraction_zones_60min_05min.map
+2021-09-22 08:41:43,759 landCover WARNING As the "Original" interceptionModuleType is used, the "minInterceptCap" value is ignored. The interception scope is only "canopy".
+2021-09-22 08:41:43,759 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:43,759 virtualOS DEBUG read file/values: 0.0025
+2021-09-22 08:41:43,760 virtualOS DEBUG read file/values: 0.1
+2021-09-22 08:41:43,760 virtualOS DEBUG read file/values: 0.05
+2021-09-22 08:41:43,760 landCover DEBUG Obtaining the land cover parameters that are fixed for the entire simulation.
+2021-09-22 08:41:43,760 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrPaddy/minf_paddy_permafrost.map
+2021-09-22 08:41:44,082 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrPaddy/maxf_paddy.map
+2021-09-22 08:41:44,255 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrPaddy/rfrac1_paddy.map
+2021-09-22 08:41:44,536 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrPaddy/rfrac2_paddy.map
+2021-09-22 08:41:44,867 virtualOS DEBUG read file/values: 0.5
+2021-09-22 08:41:44,867 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/irrPaddy/fractionPaddy.map
+2021-09-22 08:41:45,682 landCover DEBUG The parameter arnoBeta is approximated from the minSoilDepthFrac and maxSoilDepthFrac values.
+2021-09-22 08:41:45,685 virtualOS DEBUG read file/values: 0.05
+2021-09-22 08:41:45,685 virtualOS DEBUG read file/values: 0.2
+2021-09-22 08:41:45,685 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:46,010 virtualOS DEBUG read file/values: global_05min/waterUse/abstraction_zones/abstraction_zones_60min_05min.map
+2021-09-22 08:41:46,342 landCover WARNING This run assumes zero canopy interception capacity for this run, UNLESS minInterceptCap (minimum interception capacity) is bigger than zero.
+
+2021-09-22 08:41:46,343 landCover WARNING As the "Original" interceptionModuleType is used, the "minInterceptCap" value is ignored. The interception scope is only "canopy".
+2021-09-22 08:41:46,343 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:46,343 virtualOS DEBUG read file/values: 0.0025
+2021-09-22 08:41:46,343 virtualOS DEBUG read file/values: 0.1
+2021-09-22 08:41:46,343 virtualOS DEBUG read file/values: 0.05
+2021-09-22 08:41:46,343 landCover DEBUG Obtaining the land cover parameters that are fixed for the entire simulation.
+2021-09-22 08:41:46,343 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrNonPaddy/minf_nonpaddy_permafrost.map
+2021-09-22 08:41:46,655 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrNonPaddy/maxf_nonpaddy.map
+2021-09-22 08:41:46,957 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrNonPaddy/rfrac1_nonpaddy.map
+2021-09-22 08:41:47,151 virtualOS DEBUG read file/values: global_30min/landSurface/landCover/irrNonPaddy/rfrac2_nonpaddy.map
+2021-09-22 08:41:47,649 virtualOS DEBUG read file/values: 1.0
+2021-09-22 08:41:47,650 virtualOS DEBUG read file/values: global_05min/landSurface/landCover/irrNonPaddy/fractionNonPaddy.map
+2021-09-22 08:41:49,327 landCover DEBUG The parameter arnoBeta is approximated from the minSoilDepthFrac and maxSoilDepthFrac values.
+2021-09-22 08:41:49,330 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:41:49,330 virtualOS DEBUG read file/values: 0.2
+2021-09-22 08:41:49,330 virtualOS DEBUG read file/values: 0.5
+2021-09-22 08:41:49,330 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:41:49,670 virtualOS DEBUG read file/values: global_05min/waterUse/abstraction_zones/abstraction_zones_60min_05min.map
+2021-09-22 08:41:49,943 landCover WARNING This run assumes zero canopy interception capacity for this run, UNLESS minInterceptCap (minimum interception capacity) is bigger than zero.
+
+2021-09-22 08:41:49,958 landSurface INFO Determining fraction of total irrigated areas over each cell
+2021-09-22 08:41:49,958 virtualOS DEBUG reading variable: irrigationArea from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/waterUse/irrigation/irrigated_areas/irrigationArea05ArcMin.nc
+2021-09-22 08:41:50,617 virtualOS DEBUG The date 2001-1-1 is available. The 'exact' option is used while selecting netcdf time.
+2021-09-22 08:41:50,617 virtualOS DEBUG Using the date index 41
+2021-09-22 08:41:50,834 virtualOS DEBUG Crop to the clone map with lower left corner (x,y): -73.5 , 45.0
+2021-09-22 08:41:50,865 virtualOS DEBUG read file/values: global_05min/initialConditions/interceptStor_forest_1999-12-31.map
+2021-09-22 08:41:51,506 virtualOS DEBUG read file/values: global_05min/initialConditions/snowCoverSWE_forest_1999-12-31.map
+2021-09-22 08:41:52,217 virtualOS DEBUG read file/values: global_05min/initialConditions/snowFreeWater_forest_1999-12-31.map
+2021-09-22 08:41:52,872 virtualOS DEBUG read file/values: global_05min/initialConditions/topWaterLayer_forest_1999-12-31.map
+2021-09-22 08:41:53,576 virtualOS DEBUG read file/values: global_05min/initialConditions/storUpp_forest_1999-12-31.map
+2021-09-22 08:41:54,156 virtualOS DEBUG read file/values: global_05min/initialConditions/storLow_forest_1999-12-31.map
+2021-09-22 08:41:54,805 virtualOS DEBUG read file/values: global_05min/initialConditions/interflow_forest_1999-12-31.map
+2021-09-22 08:41:55,356 virtualOS DEBUG read file/values: global_05min/initialConditions/interceptStor_grassland_1999-12-31.map
+2021-09-22 08:41:55,979 virtualOS DEBUG read file/values: global_05min/initialConditions/snowCoverSWE_grassland_1999-12-31.map
+2021-09-22 08:41:56,643 virtualOS DEBUG read file/values: global_05min/initialConditions/snowFreeWater_grassland_1999-12-31.map
+2021-09-22 08:41:58,337 virtualOS DEBUG read file/values: global_05min/initialConditions/topWaterLayer_grassland_1999-12-31.map
+2021-09-22 08:41:59,886 virtualOS DEBUG read file/values: global_05min/initialConditions/storUpp_grassland_1999-12-31.map
+2021-09-22 08:42:00,505 virtualOS DEBUG read file/values: global_05min/initialConditions/storLow_grassland_1999-12-31.map
+2021-09-22 08:42:01,170 virtualOS DEBUG read file/values: global_05min/initialConditions/interflow_grassland_1999-12-31.map
+2021-09-22 08:42:03,183 virtualOS DEBUG read file/values: global_05min/initialConditions/interceptStor_irrPaddy_1999-12-31.map
+2021-09-22 08:42:03,736 virtualOS DEBUG read file/values: global_05min/initialConditions/snowCoverSWE_irrPaddy_1999-12-31.map
+2021-09-22 08:42:04,583 virtualOS DEBUG read file/values: global_05min/initialConditions/snowFreeWater_irrPaddy_1999-12-31.map
+2021-09-22 08:42:05,232 virtualOS DEBUG read file/values: global_05min/initialConditions/topWaterLayer_irrPaddy_1999-12-31.map
+2021-09-22 08:42:06,123 virtualOS DEBUG read file/values: global_05min/initialConditions/storUpp_irrPaddy_1999-12-31.map
+2021-09-22 08:42:07,443 virtualOS DEBUG read file/values: global_05min/initialConditions/storLow_irrPaddy_1999-12-31.map
+2021-09-22 08:42:08,394 virtualOS DEBUG read file/values: global_05min/initialConditions/interflow_irrPaddy_1999-12-31.map
+2021-09-22 08:42:08,972 virtualOS DEBUG read file/values: global_05min/initialConditions/interceptStor_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:09,736 virtualOS DEBUG read file/values: global_05min/initialConditions/snowCoverSWE_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:10,342 virtualOS DEBUG read file/values: global_05min/initialConditions/snowFreeWater_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:10,966 virtualOS DEBUG read file/values: global_05min/initialConditions/topWaterLayer_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:11,600 virtualOS DEBUG read file/values: global_05min/initialConditions/storUpp_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:12,298 virtualOS DEBUG read file/values: global_05min/initialConditions/storLow_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:13,029 virtualOS DEBUG read file/values: global_05min/initialConditions/interflow_irrNonPaddy_1999-12-31.map
+2021-09-22 08:42:13,878 groundwater INFO Limit for annual regional groundwater abstraction is used.
+2021-09-22 08:42:13,878 virtualOS DEBUG reading variable: specificYield from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/groundwater/properties/groundwaterProperties5ArcMin.nc
+2021-09-22 08:42:14,762 virtualOS DEBUG reading variable: kSatAquifer from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/groundwater/properties/groundwaterProperties5ArcMin.nc
+2021-09-22 08:42:14,969 virtualOS DEBUG reading variable: recessionCoeff from the file: /mnt/data/parameter-sets/pcrglobwb_global/global_05min/groundwater/properties/groundwaterProperties5ArcMin.nc
+2021-09-22 08:42:15,183 virtualOS DEBUG read file/values: global_05min/groundwater/aquifer_thickness_estimate/thickness_05min.map
+2021-09-22 08:42:15,885 groundwater INFO Fossil groundwater abstractions are allowed with LIMIT.
+2021-09-22 08:42:15,885 groundwater INFO Estimating fossil groundwater capacities based on aquifer thicknesses and specific yield.
+2021-09-22 08:42:15,885 virtualOS DEBUG read file/values: 0.0
+2021-09-22 08:42:15,885 virtualOS DEBUG read file/values: global_05min/waterUse/abstraction_zones/abstraction_zones_30min_05min.map
+2021-09-22 08:42:16,421 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:42:16,752 virtualOS DEBUG read file/values: 0.050
+2021-09-22 08:42:16,752 virtualOS DEBUG read file/values: 0.020
+2021-09-22 08:42:16,752 virtualOS DEBUG read file/values: global_05min/initialConditions/storGroundwater_1999-12-31.map
+2021-09-22 08:42:17,704 virtualOS DEBUG read file/values: global_05min/initialConditions/avgTotalGroundwaterAbstraction_1999-12-31.map
+2021-09-22 08:42:19,755 virtualOS DEBUG read file/values: global_05min/initialConditions/avgTotalGroundwaterAllocationLong_1999-12-31.map
+2021-09-22 08:42:20,580 virtualOS DEBUG read file/values: global_05min/initialConditions/avgTotalGroundwaterAllocationShort_1999-12-31.map
+2021-09-22 08:42:21,765 virtualOS DEBUG read file/values: global_05min/initialConditions/avgNonFossilGroundwaterAllocationLong_1999-12-31.map
+2021-09-22 08:42:22,956 virtualOS DEBUG read file/values: global_05min/initialConditions/avgNonFossilGroundwaterAllocationShort_1999-12-31.map
+2021-09-22 08:42:23,600 virtualOS DEBUG read file/values: global_05min/initialConditions/relativeGroundwaterHead_1999-12-31.map
+2021-09-22 08:42:24,825 virtualOS DEBUG read file/values: global_05min/initialConditions/baseflow_1999-12-31.map
+2021-09-22 08:42:25,646 groundwater INFO Using a pre-defined initial condition for fossil groundwater storage.
+2021-09-22 08:42:25,646 virtualOS DEBUG read file/values: global_05min/initialConditions/storGroundwaterFossil_1999-12-31.map
+2021-09-22 08:42:26,185 groundwater INFO The pre-defined initial condition for fossil groundwater is limited by fossilWaterCap (full capacity).
+2021-09-22 08:42:26,186 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/lddsound_05min.map
+2021-09-22 08:42:26,585 virtualOS DEBUG read file/values: global_05min/cloneMaps/merrimack_05min.map
+2021-09-22 08:42:26,615 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/cellsize05min.correct.map
+2021-09-22 08:42:26,954 virtualOS DEBUG read file/values: global_05min/routing/channel_properties/channel_gradient.map
+2021-09-22 08:42:28,036 virtualOS DEBUG read file/values: 0.04
+2021-09-22 08:42:28,036 virtualOS DEBUG read file/values: global_05min/routing/channel_properties/bankfull_width.map
+2021-09-22 08:42:28,823 virtualOS DEBUG read file/values: global_05min/routing/channel_properties/bankfull_width.map
+2021-09-22 08:42:29,185 virtualOS DEBUG read file/values: global_05min/routing/channel_properties/bankfull_depth.map
+2021-09-22 08:42:29,855 virtualOS DEBUG read file/values: global_05min/routing/ldd_and_cell_area/lddsound_05min.map
+2021-09-22 08:42:30,126 virtualOS DEBUG read file/values: global_05min/initialConditions/timestepsToAvgDischarge_1999-12-31.map
+2021-09-22 08:42:30,968 virtualOS DEBUG read file/values: global_05min/initialConditions/channelStorage_1999-12-31.map
