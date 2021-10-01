@@ -4,8 +4,8 @@ message: 'If you use this software, please cite it using these metadata/'
 authors:
   -
     affiliation: "Delft University of Technology"
-    family-names: Rolf
-    given-names: Hut
+    family-names: Hut
+    given-names: Rolf
     orcid: "https://orcid.org/0000-0002-5697-5697"
   -
     affiliation: "Netherlands eScience Center"
@@ -54,6 +54,6 @@ authors:
     given-names: Nick
     orcid: "https://orcid.org/0000-0002-7200-3353"
 # TODO fill doi after release
-doi: "10.5281/zenodo.XXXXXX"
+doi: "10.5281/zenodo.5543899"
 license: Apache-2.0
 repository-code: 'https://github.com/eWaterCycle/technicalPaperExampleNotebooks'
