@@ -1,0 +1,31 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32630" } },
+"features": [
+{ "type": "Feature", "properties": { "index": 1, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 649089.229999999981374, 5905094.820000000298023 ] } },
+{ "type": "Feature", "properties": { "index": 2, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 632645.99, 5959301.629999999888241 ] } },
+{ "type": "Feature", "properties": { "index": 3, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 632635.71999999997206, 5947633.549999999813735 ] } },
+{ "type": "Feature", "properties": { "index": 4, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 636024.410000000032596, 5983958.009999999776483 ] } },
+{ "type": "Feature", "properties": { "index": 5, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 632635.770000000018626, 5922513.940000000409782 ] } },
+{ "type": "Feature", "properties": { "index": 6, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 652950.020000000018626, 5905096.599999999627471 ] } },
+{ "type": "Feature", "properties": { "index": 7, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 635719.64000000001397, 5912597.990000000223517 ] } },
+{ "type": "Feature", "properties": { "index": 8, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 669535.520000000018626, 5986417.889999999664724 ] } },
+{ "type": "Feature", "properties": { "index": 9, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 632645.99, 5931563.870000000111759 ] } },
+{ "type": "Feature", "properties": { "index": 10, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 693645.979999999981374, 5930608.200000000186265 ] } },
+{ "type": "Feature", "properties": { "index": 11, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 655081.96999999997206, 5930194.83 ] } },
+{ "type": "Feature", "properties": { "index": 12, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 678798.96999999997206, 5944194.79 ] } },
+{ "type": "Feature", "properties": { "index": 13, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 707945.979999999981374, 5909025.740000000223517 ] } },
+{ "type": "Feature", "properties": { "index": 14, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 688145.979999999981374, 5936883.650000000372529 ] } },
+{ "type": "Feature", "properties": { "index": 15, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 670397.839999999967404, 5918894.79 ] } },
+{ "type": "Feature", "properties": { "index": 16, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 701567.26, 5919095.589999999850988 ] } },
+{ "type": "Feature", "properties": { "index": 17, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 674437.459999999962747, 5989358.009999999776483 ] } },
+{ "type": "Feature", "properties": { "index": 18, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 638116.349999999976717, 5976845.889999999664724 ] } },
+{ "type": "Feature", "properties": { "index": 19, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 648187.930000000051223, 5972061.110000000335276 ] } },
+{ "type": "Feature", "properties": { "index": 20, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 654916.339999999967404, 5935515.870000000111759 ] } },
+{ "type": "Feature", "properties": { "index": 21, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 654803.040000000037253, 5960961.139999999664724 ] } },
+{ "type": "Feature", "properties": { "index": 22, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 644178.38, 5973158.92 ] } },
+{ "type": "Feature", "properties": { "index": 23, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 666645.99, 5974866.519999999552965 ] } },
+{ "type": "Feature", "properties": { "index": 24, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 646678.78000000002794, 5905095.46 ] } },
+{ "type": "Feature", "properties": { "index": 25, "uparea": null }, "geometry": { "type": "Point", "coordinates": [ 667845.99, 5972403.820000000298023 ] } }
+]
+}
